@@ -1,5 +1,4 @@
-from syrc.functions import coding_numbers, make_date_readable, check_true, check_transaction, amount
-
+from syrc.functions import coding_numbers, make_date_readable, check_true, check_transaction, amount, sort_by_date
 def test_coding_numbers():
     assert coding_numbers("MIR 1234123412366612") == "MIR 1234 12** **** 6612"
     assert coding_numbers("Счет под номером 12341234123412347720") == "Счет под номером **7720"
@@ -18,3 +17,4 @@ def test_check_transaction():
 
 def test_amount():
     assert amount("1234", "RUBLES") == '1234 RUBLES'
+
