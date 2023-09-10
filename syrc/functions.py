@@ -1,3 +1,17 @@
+import json
+from datetime import datetime
+def sort_by_date():
+    """
+     данная функция работает с данными из operation.json
+     сортирует их по порядку (по дате)
+     возвращает кортеж с ними
+     """
+    with open('operations.json', encoding='utf-8') as main_file:
+        transactions = json.load(main_file)
+        transactions.sort(key=lambda d: d['date'], reverse=True)
+    return transactions
+
+
 def coding_numbers(transaction):
     """
      param: transaction - входящие данные карты\счета
@@ -8,12 +22,12 @@ def coding_numbers(transaction):
     splited = transaction.split()
     a = str(splited[-1])
     if len(a) == 16:
-        coded_number = a[0]+a[1]+a[2]+a[3]+" "+a[4]+a[5]+"** **** "+a[12]+a[13]+a[14]+a[15]
+        coded_number = a[0:4]+" "+a[4]+a[5]+"** **** "+a[-4::]
         splited[-1] = coded_number
         coded_number = " ".join(splited)
         return coded_number
     if len(a) == 20:
-        coded_number = "**"+a[-4]+a[-3]+a[-2]+a[-1]
+        coded_number = "**"+a[-4::]
         splited[-1] = coded_number
         coded_number = " ".join(splited)
         return coded_number
@@ -41,14 +55,14 @@ def check_true(file):
     else:
         return True
 
-def make_date_readable(date):
+def make_date_readable(data):
     """
     :param date:  строка с датой и временем
     :return:  строка с датой в удобном формате
     Функция выполняет преобразование даты в формат: ДД.ММ.ГГГГ
     """
-    true_date = date[8:10] + "." + date[5:7] + "." + date[0:4]
-    return true_date
+    date = datetime.strptime(data,'%Y-%m-%dT%H:%M:%S.%f').strftime("%d.%m.%Y")
+    return date
 
 def amount(money, valuta):
     """
