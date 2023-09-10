@@ -6,17 +6,17 @@
 ### Visa Classic 2842 87** **** 9012 -> Счет **3655 
 ### 48150.39 US
 
-Структура проекта:
-- tests
-  __init_
-  test_functions.py
-- syrc
-  __init_
-  main.py
-  functions.py
-  opartions.json
-requierements
-.gitignore
+### Структура проекта:
+#### - tests
+####  __init_
+####  test_functions.py
+#### - syrc
+####  __init_
+####  main.py
+####  functions.py
+#### opartions.json
+#### requierements
+#### .gitignore
   
   
 
