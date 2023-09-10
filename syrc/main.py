@@ -1,7 +1,9 @@
 from functions import main_function, check_true, sort_by_date
+import json
 
-
-all_files = sort_by_date()
+with open('operations.json', encoding='utf-8') as main_file:
+    transactions = json.load(main_file)
+all_files = sort_by_date(transactions)
 count = 0
 approved = 0
 while approved < 5:                      # запускаем цикл, для выборки в 5 транзакций
