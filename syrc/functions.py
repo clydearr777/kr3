@@ -1,15 +1,10 @@
-import json
 from datetime import datetime
-def sort_by_date():
+def sort_by_date(transactions):
     """
      данная функция работает с данными из operation.json
      сортирует их по порядку (по дате)
-     возвращает кортеж с ними
      """
-    with open('operations.json', encoding='utf-8') as main_file:
-        transactions = json.load(main_file)
-        transactions.sort(key=lambda d: d['date'], reverse=True)
-    return transactions
+    return transactions.sort(key=lambda d: d['date'], reverse=True)
 
 
 def coding_numbers(transaction):
@@ -17,7 +12,6 @@ def coding_numbers(transaction):
      param: transaction - входящие данные карты\счета
      функция перекодирует данные, в случае карты - скрывает в середине цифры звездочками
      в случае счета выдает последние 4 циры номера
-     return: возвращает зашифрованный номер счета
      """
     splited = transaction.split()
     a = str(splited[-1])
@@ -35,8 +29,6 @@ def coding_numbers(transaction):
 def check_transaction(transaction):
     """
     Функция проверяет тип транзакции (Открытие вклада или перевод)
-    :param transaction: строка с типом Транзакции
-    :return:  возвращает True или False
     """
     if transaction == "Открытие вклада":
         return True
@@ -48,7 +40,6 @@ def check_true(file):
     Принимает 1 набор данных из файла json, проверяет данные по ключу 'state' на предмет
     отменена или прошла операция
     :param file:  набор данных из json
-    :return:  true или false
     """
     if file == "CANCELED":
         return False
@@ -57,8 +48,6 @@ def check_true(file):
 
 def make_date_readable(data):
     """
-    :param date:  строка с датой и временем
-    :return:  строка с датой в удобном формате
     Функция выполняет преобразование даты в формат: ДД.ММ.ГГГГ
     """
     date = datetime.strptime(data,'%Y-%m-%dT%H:%M:%S.%f').strftime("%d.%m.%Y")
